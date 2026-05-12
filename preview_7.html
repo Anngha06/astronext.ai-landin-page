@@ -5,7 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AstroNext.ai | Astrologer Registration</title>
     <style>
-        /* ... (your existing CSS styles) ... */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(145deg, #dccfae 0%, #b89a6e 100%);
+            font-family: 'Inter', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+        .registration-card {
+            max-width: 880px;
+            width: 100%;
+            background: rgba(255, 250, 240, 0.95);
+            backdrop-filter: blur(8px);
+            border-radius: 48px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid rgba(180, 130, 70, 0.3);
+            padding-bottom: 1.2rem;
+        }
+        .header-section h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #2d2418, #8f5e2c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .badge {
+            display: inline-block;
+            background: #e3d4bc;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            color: #5a3e1f;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+        .form-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+        .field-group { display: flex; flex-direction: column; gap: 6px; }
+        label {
+            font-weight: 600;
+            color: #3f2d19;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        label i { color: #b87a3a; width: 20px; }
+        input, textarea, select {
+            background: #fffef7;
+            border: 1px solid #eedcbf;
+            border-radius: 28px;
+            padding: 12px 18px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            width: 100%;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #d49c4a;
+            box-shadow: 0 0 0 3px rgba(212, 156, 74, 0.2);
+            background: #ffffff;
+        }
+        .options-wrapper {
+            background: rgba(235, 220, 190, 0.4);
+            border-radius: 28px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+        }
+        .options-wrapper label {
+            font-weight: 500;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+        .options-wrapper input {
+            width: auto;
+            margin-right: 4px;
+            accent-color: #b87a3a;
+        }
+        .btn-submit {
+            background: #e2cfae;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #2f2418;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+        .btn-submit:hover { transform: translateY(-2px); background: #efe0c8; }
+        .status-area { margin-top: 1.2rem; text-align: center; padding: 8px; border-radius: 60px; font-size: 0.85rem; font-weight: 500; }
+        .footer-note { margin-top: 1.8rem; text-align: center; font-size: 0.7rem; color: #8e724c; border-top: 1px solid #e7d5ba; padding-top: 1.2rem; }
+        @media (max-width: 680px) { .registration-card { padding: 1.5rem; } }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -16,8 +121,7 @@
         <h1>AstroNext<span style="font-weight:400">.ai</span></h1>
         <div class="badge"><i class="fas fa-chart-line"></i> Astrologer Registration</div>
         <p style="font-size: 0.8rem; color: #6c4f2c; margin-top: 12px;">
-            Join AstroNext.ai and grow your astrology practice with your own branded presence, direct client leads, SEO visibility, 
-            Meta Ads promotion, and premium digital support.
+            Join AstroNext.ai and grow your astrology practice with your own branded presence, direct client leads, and premium digital support.
         </p>
     </div>
 
@@ -115,10 +219,11 @@
     }
 
     // ========================
-    // 2. Form Submission (Fixed for Vercel)
+    // 2. Form Submission (CORS-enabled with doOptions)
     // ========================
-    // *** IMPORTANT: Replace this URL with your own Apps Script Web App URL ***
-    const SCRIPT_URL = "https://script.google.com/a/macros/iiit-bh.ac.in/s/AKfycbwyRUEZ8nOhNulNCySHY7VRgjcyM8PTX_CXinMXw5LFmy0bREDqMFSuVaYwxM3HrECF/exec";
+    // IMPORTANT: Replace this URL with your Apps Script Web App URL
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyRUEZ8nOhNulNCySHY7VRgjcyM8PTX_CXinMXw5LFmy0bREDqMFSuVaYwxM3HrECF/exec";
+
     const form = document.getElementById('astroRegisterForm');
     const statusDiv = document.getElementById('formStatus');
 
@@ -127,20 +232,21 @@
         setTimeout(() => { if(statusDiv) statusDiv.innerHTML = ''; }, 6000);
     }
 
-    // This function uses `mode: 'no-cors'` to bypass the CORS error on Vercel.
-    // With `no-cors`, we cannot read the response from the script, but the
-    // request is still sent and the data is saved to the sheet successfully.
     async function submitToSheet(formDataObj) {
         try {
-            await fetch(SCRIPT_URL, {
+            const response = await fetch(SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors', // <-- This is the fix for the CORS error.
+                mode: 'cors',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: new URLSearchParams(formDataObj).toString()
             });
-            return { success: true };
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            const result = await response.json();
+            return { success: result.result === 'success', error: result.message };
         } catch (err) {
-            console.error("Fetch error:", err);
+            console.error('Fetch error:', err);
             return { success: false, error: err.message };
         }
     }
@@ -151,17 +257,18 @@
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting...';
 
+        // --- Validation ---
         const fullname = document.getElementById('fullname').value.trim();
         const mobile = document.getElementById('mobile').value.trim();
         const email = document.getElementById('email').value.trim();
         const charges = document.getElementById('charges').value.trim();
 
-        if (!fullname) { showMessage("Full Name is required.", true); resetBtn(); return; }
-        if (!mobile) { showMessage("Mobile Number is required.", true); resetBtn(); return; }
-        if (!email) { showMessage("Email ID is required.", true); resetBtn(); return; }
+        if (!fullname) { showMessage('Full Name is required.', true); resetBtn(); return; }
+        if (!mobile) { showMessage('Mobile Number is required.', true); resetBtn(); return; }
+        if (!email) { showMessage('Email ID is required.', true); resetBtn(); return; }
         const emailPattern = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
-        if (!emailPattern.test(email)) { showMessage("Valid email required.", true); resetBtn(); return; }
-        if (!charges) { showMessage("Consultation Charges are required.", true); resetBtn(); return; }
+        if (!emailPattern.test(email)) { showMessage('Valid email required.', true); resetBtn(); return; }
+        if (!charges) { showMessage('Consultation Charges are required.', true); resetBtn(); return; }
 
         const payload = {
             timestamp: new Date().toISOString(),
@@ -179,11 +286,11 @@
 
         const result = await submitToSheet(payload);
         if (result.success) {
-            showMessage("✅ Registration submitted successfully! Our team will contact you soon.");
+            showMessage('✅ Registration submitted successfully! Our team will contact you soon.');
             form.reset();
             document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => el.checked = false);
         } else {
-            showMessage("❌ Submission failed: " + result.error, true);
+            showMessage('❌ Submission failed: ' + result.error, true);
         }
         
         function resetBtn() {
