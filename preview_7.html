@@ -293,10 +293,14 @@
             showMessage(' Submission successful !! ' , true);
         }
         
-        function resetBtn() {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Register with AstroNext <i class="fas fa-chart-line"></i>';
-        }
+       function resetBtn() {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Register with AstroNext <i class="fas fa-chart-line"></i>';
+    
+    submitBtn.style.background = "#25D366";
+    submitBtn.style.color = "#fff";
+    submitBtn.style.border = "none";
+}
         resetBtn();
     });
 </script>
