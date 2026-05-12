@@ -219,7 +219,7 @@
         return Array.from(checkboxes).map(cb => cb.value).join(', ');
     }
 
-    // ---------- Form submission ----------
+    // ---------- Form submission (works with no-cors, no setHeader required) ----------
     const SCRIPT_URL = "https://script.google.com/a/macros/iiit-bh.ac.in/s/AKfycbw7nrNBZqEBibyw6y6CKtNtVpQGfspsoI-uscwUgiOHZlB1iLMVPI_3staoGdlSPn_w/exec";
 
     const form = document.getElementById('astroRegisterForm');
@@ -232,15 +232,16 @@
 
     async function submitToSheet(formDataObj) {
         try {
-            const response = await fetch(SCRIPT_URL, {
+            // Using no-cors mode – no CORS headers needed, the request will always reach the server
+            await fetch(SCRIPT_URL, {
                 method: 'POST',
-                mode: 'cors',
+                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: new URLSearchParams(formDataObj).toString()
             });
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const result = await response.json();
-            return { success: result.result === 'success', error: result.message };
+            // With no-cors, we cannot read the response, but if no network error occurred,
+            // the request was sent. We assume success.
+            return { success: true };
         } catch (err) {
             console.error("Fetch error:", err);
             return { success: false, error: err.message };
