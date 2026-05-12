@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroNext.ai | Astrologer Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #dccfae 0%, #b89a6e 100%);
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        /* Main Container – Glassmorphic Effect */
+        .registration-card {
+            max-width: 880px;
+            width: 100%;
+            background: rgba(255, 250, 240, 0.95);
+            backdrop-filter: blur(8px);
+            border-radius: 48px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 245, 215, 0.8);
+            padding: 2rem;
+            border: 1px solid rgba(230, 205, 155, 0.6);
+            transition: transform 0.2s ease;
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid rgba(180, 130, 70, 0.3);
+            padding-bottom: 1.2rem;
+        }
+
+        .header-section h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #2d2418, #8f5e2c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e3d4bc;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            color: #5a3e1f;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        /* Form Layout */
+        .form-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #3f2d19;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        label i {
+            color: #b87a3a;
+            width: 20px;
+        }
+
+        input, textarea, select {
+            background: #fffef7;
+            border: 1px solid #eedcbf;
+            border-radius: 28px;
+            padding: 12px 18px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: all 0.2s;
+            outline: none;
+            width: 100%;
+        }
+
+        textarea {
+            border-radius: 24px;
+            resize: vertical;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #d49c4a;
+            box-shadow: 0 0 0 3px rgba(212, 156, 74, 0.2);
+            background: #ffffff;
+        }
+
+        /* Checkbox & Radio Group Styling */
+        .options-wrapper {
+            background: rgba(235, 220, 190, 0.4);
+            border-radius: 28px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+        }
+
+        .options-wrapper label {
+            font-weight: 500;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+
+        .options-wrapper input {
+            width: auto;
+            margin-right: 4px;
+            transform: scale(1);
+            accent-color: #b87a3a;
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            background: #e2cfae;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #2f2418;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 8px 10px 16px rgba(60, 40, 20, 0.2), -4px -3px 8px rgba(255, 250, 230, 0.8);
+            margin-top: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            background: #efe0c8;
+            box-shadow: 12px 14px 20px rgba(50, 30, 10, 0.25);
+        }
+
+        .status-area {
+            margin-top: 1.2rem;
+            text-align: center;
+            padding: 8px;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .footer-note {
+            margin-top: 1.8rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #8e724c;
+            border-top: 1px solid #e7d5ba;
+            padding-top: 1.2rem;
+        }
+
+        hr {
+            margin: 0.5rem 0;
+            border-color: #f0e2cf;
+        }
+
+        @media (max-width: 680px) {
+            .registration-card {
+                padding: 1.5rem;
+            }
+            .options-wrapper {
+                gap: 0.6rem;
+            }
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<div class="registration-card">
+    <div class="header-section">
+        <h1>AstroNext<span style="font-weight:400">.ai</span></h1>
+        <div class="badge"><i class="fas fa-chart-line"></i> Astrologer Registration</div>
+        <p style="font-size: 0.8rem; color: #6c4f2c; margin-top: 12px;">
+            Join AstroNext.ai and grow your astrology practice with your own branded presence, direct client leads, SEO visibility, 
+            Meta Ads promotion, and premium digital support.
+        </p>
+    </div>
+
+    <form id="astroRegisterForm">
+        <div class="form-grid">
+            <!-- 1. Full Name -->
+            <div class="field-group">
+                <label><i class="fas fa-user"></i> Full Name <span style="color:#c45d2c;">*</span></label>
+                <input type="text" name="fullname" id="fullname" required placeholder="e.g., Jyotish Sharma">
+            </div>
+
+            <!-- 2. Mobile / WhatsApp -->
+            <div class="field-group">
+                <label><i class="fab fa-whatsapp"></i> Mobile Number / WhatsApp Number <span style="color:#c45d2c;">*</span></label>
+                <input type="tel" name="mobile" id="mobile" required placeholder="+91 98765 43210">
+            </div>
+
+            <!-- 3. Email ID -->
+            <div class="field-group">
+                <label><i class="fas fa-envelope"></i> Email ID <span style="color:#c45d2c;">*</span></label>
+                <input type="email" name="email" id="email" required placeholder="hello@astronext.ai">
+            </div>
+
+            <!-- 4. Full Address -->
+            <div class="field-group">
+                <label><i class="fas fa-map-marker-alt"></i> Full Address</label>
+                <textarea name="address" id="address" rows="2" placeholder="House/Office No., Street, Landmark"></textarea>
+            </div>
+
+            <!-- 5. City & State (two fields inline) -->
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <div class="field-group" style="flex:1">
+                    <label><i class="fas fa-city"></i> City</label>
+                    <input type="text" name="city" id="city" placeholder="e.g., Delhi">
+                </div>
+                <div class="field-group" style="flex:1">
+                    <label><i class="fas fa-landmark"></i> State</label>
+                    <input type="text" name="state" id="state" placeholder="e.g., Uttar Pradesh">
+                </div>
+            </div>
+
+            <!-- 6. Years of Experience -->
+            <div class="field-group">
+                <label><i class="fas fa-calendar-alt"></i> Years of Service / Experience</label>
+                <input type="text" name="experience" id="experience" placeholder="e.g., 12+ years">
+            </div>
+
+            <!-- 7. Languages (Checkboxes) -->
+            <div class="field-group">
+                <label><i class="fas fa-language"></i> Languages You Can Consult In</label>
+                <div id="langContainer" class="options-wrapper"></div>
+            </div>
+
+            <!-- 8. Speciality (Checkboxes) -->
+            <div class="field-group">
+                <label><i class="fas fa-star-of-life"></i> Speciality</label>
+                <div id="specialityContainer" class="options-wrapper"></div>
+            </div>
+
+            <!-- 9. Consultation Charges -->
+            <div class="field-group">
+                <label><i class="fas fa-rupee-sign"></i> Consultation Charges <span style="color:#c45d2c;">*</span></label>
+                <input type="text" name="charges" id="charges" required placeholder="₹500 / ₹1000 / As per service">
+            </div>
+
+            <!-- 10. Preferred Contact Time (Radio) -->
+            <div class="field-group">
+                <label><i class="fas fa-clock"></i> Preferred Contact Time</label>
+                <div id="timeContainer" class="options-wrapper"></div>
+            </div>
+
+            <!-- 11. Additional Notes -->
+            <div class="field-group">
+                <label><i class="fas fa-pen-fancy"></i> Additional Notes</label>
+                <textarea name="additional_notes" id="additional_notes" rows="2" placeholder="Any specific requests or queries..."></textarea>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+            <i class="fas fa-paper-plane"></i> Register with AstroNext <i class="fas fa-chart-line"></i>
+        </button>
+        <div id="formStatus" class="status-area"></div>
+    </form>
+    <div class="footer-note">
+        <i class="fas fa-shield-alt"></i> Your information is secure and will be used only for onboarding verification.
+    </div>
+</div>
+
+<script>
+    // --------------------------------------------------------------
+    // 1. Generate Dynamic Checkboxes & Radio Options
+    // --------------------------------------------------------------
+    const languagesList = ["Hindi","English","Odia","Bengali","Telugu","Tamil","Kannada","Malayalam","Marathi","Gujarati","Punjabi","Other"];
+    const specialityList = [
+        "Vedic Astrology","Tarot Reading","Numerology","Palmistry","Vastu Shastra","Kundli Matching",
+        "Marriage & Relationship","Career Guidance","Business Guidance","Finance & Wealth","Health Astrology",
+        "Love Problems","Education Guidance","Gemstone Consultation","Reiki Healing","Spiritual Healing",
+        "Prashna Kundli","Face Reading","Nadi Astrology","Other"
+    ];
+    const timeSlots = ["Morning","Afternoon","Evening","Anytime"];
+
+    function renderOptions(containerId, items, type) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = '';
+        items.forEach(item => {
+            const label = document.createElement('label');
+            const input = document.createElement('input');
+            input.type = type; // 'checkbox' or 'radio'
+            input.name = containerId === 'langContainer' ? 'langs' : (containerId === 'specialityContainer' ? 'speciality' : 'preferTime');
+            input.value = item;
+            if (type === 'radio' && containerId === 'timeContainer') {
+                input.name = 'preferTime';
+            }
+            label.appendChild(input);
+            label.appendChild(document.createTextNode(' ' + item));
+            container.appendChild(label);
+        });
+    }
+
+    renderOptions('langContainer', languagesList, 'checkbox');
+    renderOptions('specialityContainer', specialityList, 'checkbox');
+    renderOptions('timeContainer', timeSlots, 'radio');
+
+    // Helper to get selected checkbox values as comma separated string
+    function getSelectedCheckboxValues(name) {
+        const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+        return Array.from(checkboxes).map(cb => cb.value).join(', ');
+    }
+
+    // --------------------------------------------------------------
+    // 2. Google Sheets Submission Logic (using the provided script URL)
+    // --------------------------------------------------------------
+    const SCRIPT_URL = "https://script.google.com/a/macros/iiit-bh.ac.in/s/AKfycbw7nrNBZqEBibyw6y6CKtNtVpQGfspsoI-uscwUgiOHZlB1iLMVPI_3staoGdlSPn_w/exec";
+    const form = document.getElementById('astroRegisterForm');
+    const statusDiv = document.getElementById('formStatus');
+
+    function showMessage(msg, isError = false) {
+        statusDiv.innerHTML = `<div style="background: ${isError ? '#f8ddd7' : '#e2f0da'}; border-radius: 40px; padding: 8px; color: ${isError ? '#b13e22' : '#2c641e'};"><i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${msg}</div>`;
+        setTimeout(() => { if(statusDiv) statusDiv.innerHTML = ''; }, 6000);
+    }
+
+    async function submitToSheet(formDataObj) {
+        try {
+            // Using 'no-cors' mode to bypass browser CORS restrictions when calling from localhost.
+            // The server still receives the POST data even though the browser response is opaque.
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formDataObj).toString()
+            });
+            // Since mode is 'no-cors', we cannot read the response body.
+            // We assume success if no network error occurred.
+            return { success: true };
+        } catch (err) {
+            console.error("Submission network error:", err);
+            return { success: false, error: err.message };
+        }
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitButton = document.getElementById('submitBtn');
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting...';
+
+        // --- Validation ---
+        const fullname = document.getElementById('fullname').value.trim();
+        const mobile = document.getElementById('mobile').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const charges = document.getElementById('charges').value.trim();
+
+        if (!fullname) { showMessage("Full Name is required.", true); resetAndEnable(); return; }
+        if (!mobile) { showMessage("Mobile Number is required.", true); resetAndEnable(); return; }
+        if (!email) { showMessage("Email ID is required.", true); resetAndEnable(); return; }
+        const emailPattern = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+        if (!emailPattern.test(email)) { showMessage("Please enter a valid email address.", true); resetAndEnable(); return; }
+        if (!charges) { showMessage("Consultation Charges are required.", true); resetAndEnable(); return; }
+
+        // Build payload
+        const formPayload = {
+            timestamp: new Date().toISOString(),
+            fullname: fullname,
+            mobile: mobile,
+            email: email,
+            address: document.getElementById('address').value,
+            city: document.getElementById('city').value,
+            state: document.getElementById('state').value,
+            experience: document.getElementById('experience').value,
+            languages: getSelectedCheckboxValues('langs'),
+            speciality: getSelectedCheckboxValues('speciality'),
+            charges: charges,
+            preferred_contact_time: document.querySelector('input[name="preferTime"]:checked') ? document.querySelector('input[name="preferTime"]:checked').value : '',
+            additional_notes: document.getElementById('additional_notes').value
+        };
+
+        const result = await submitToSheet(formPayload);
+        if (result.success) {
+            showMessage("✅ Registration submitted successfully! Our team will contact you soon.");
+            form.reset();
+            // Clear all checkboxes and radio selections manually
+            document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => el.checked = false);
+        } else {
+            showMessage("❌ Submission failed. Please try again later. " + (result.error || ""), true);
+        }
+        
+        function resetAndEnable() {
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Register with AstroNext <i class="fas fa-chart-line"></i>';
+        }
+        resetAndEnable();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AstroNext Sacred Book</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100vh;
+    overflow-x:hidden;
+    overflow-y:auto;
+    font-family:Georgia, serif;
+    background:radial-gradient(circle at top, #2d093c 0%, #12051b 100%);
+}
+
+.stage{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    padding:20px 20px 70px;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.header h1{
+    color:#f3d99b;
+    font-size:56px;
+    letter-spacing:1px;
+}
+
+.header p{
+    color:#d8b778;
+    letter-spacing:5px;
+    font-size:15px;
+    margin-top:6px;
+    text-transform:uppercase;
+}
+
+.book{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:0;
+    position:relative;
+    width:auto;
+    height:auto;
+    padding:28px;
+    background:#eadfca;
+    border-radius:28px;
+    box-shadow:
+        0 35px 80px rgba(0,0,0,0.35),
+        inset 0 0 30px rgba(97,65,21,0.18);
+}
+
+.page{
+    width:auto;
+    height:auto;
+    background:#f5ead2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+}
+
+.left-page{
+    border-radius:18px 0 0 18px;
+    box-shadow:inset -35px 0 45px rgba(0,0,0,0.12);
+}
+
+.right-page{
+    border-radius:0 18px 18px 0;
+    box-shadow:inset 35px 0 45px rgba(0,0,0,0.12);
+}
+
+.page img{
+    width:auto;
+    height:min(84vh, 820px);
+    object-fit:contain;
+    display:block;
+}
+
+.spine{
+    width:34px;
+    height:min(84vh, 820px);
+    background:linear-gradient(
+        to right,
+        rgba(73,45,16,0.35),
+        rgba(255,255,255,0.65),
+        rgba(73,45,16,0.35)
+    );
+    border-radius:100px;
+    box-shadow:0 0 25px rgba(0,0,0,0.25);
+    z-index:10;
+}
+
+.bottom-bar{
+    width:min(1200px, 95vw);
+    margin-top:26px;
+    margin-bottom:40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 24px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.branding{
+    display:flex;
+    flex-direction:column;
+}
+
+.branding h2{
+    color:#f3d99b;
+    font-size:28px;
+}
+
+.branding p{
+    color:#d9be8a;
+    font-size:13px;
+    letter-spacing:3px;
+    margin-top:4px;
+    text-transform:uppercase;
+}
+
+.register-btn{
+    text-decoration:none;
+    background:linear-gradient(135deg, #55176f, #8f3db0);
+    color:white;
+    padding:16px 42px;
+    border-radius:999px;
+    font-size:18px;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    box-shadow:0 12px 28px rgba(143,61,176,0.35);
+    transition:0.25s ease;
+}
+
+.register-btn:hover{
+    transform:translateY(-2px);
+}
+
+@media(max-width:950px){
+    .stage{
+        padding:18px 12px 50px;
+    }
+
+    .header h1{
+        font-size:38px;
+    }
+
+    .header p{
+        font-size:12px;
+        letter-spacing:2px;
+    }
+
+    .book{
+        flex-direction:column;
+        width:100%;
+        padding:14px;
+        border-radius:18px;
+    }
+
+    .spine{
+        display:none;
+    }
+
+    .page{
+        width:100%;
+    }
+
+    .page img{
+        width:100%;
+        height:auto;
+    }
+
+    .bottom-bar{
+        flex-direction:column;
+        gap:18px;
+        text-align:center;
+    }
+
+    .register-btn{
+        width:100%;
+        text-align:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stage">
+
+    <div class="header">
+        <h1>AstroNext.ai</h1>
+        <p>THE NEXT-GEN AI OF ASTROLOGY</p>
+    </div>
+
+    <div class="book">
+
+        <div class="page left-page">
+            <img src="images/img4.jpg" alt="AstroNext Flyer Page 1" />
+        </div>
+
+        <div class="spine"></div>
+
+        <div class="page right-page">
+            <img src="images/img7.jpg" alt="AstroNext Flyer Page 2" />
+        </div>
+
+    </div>
+
+    <div class="bottom-bar">
+
+        <div class="branding">
+            <h2>AstroNext.ai</h2>
+            <p>Premium Astrology Growth Platform</p>
+        </div>
+        <!-- Changed href to local preview_7.html -->
+        <a href="preview_7.html" class="register-btn">
+            Register Now
+        </a>
+        
+    </div>
+
+</div>
+
+</body>
+</html>
