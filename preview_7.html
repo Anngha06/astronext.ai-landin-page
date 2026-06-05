@@ -163,10 +163,57 @@
                 <label><i class="fas fa-rupee-sign"></i> Consultation Charges <span style="color:#c45d2c;">*</span></label>
                 <input type="text" id="charges" required>
             </div>
-            <div class="field-group">
-                <label><i class="fas fa-clock"></i> Preferred Contact Time</label>
-                <div id="timeContainer" class="options-wrapper"></div>
-            </div>
+           <!-- Consultation Duration -->
+<div class="field-group">
+    <label><i class="fas fa-clock"></i> Consultation Duration</label>
+    <div class="options-wrapper">
+        <label class="option-item">
+            <input type="radio" name="consultationDuration" value="15 Minutes">
+            <span>15 Minutes</span>
+        </label>
+
+        <label class="option-item">
+            <input type="radio" name="consultationDuration" value="30 Minutes">
+            <span>30 Minutes</span>
+        </label>
+
+        <label class="option-item">
+            <input type="radio" name="consultationDuration" value="1 Hour">
+            <span>1 Hour</span>
+        </label>
+    </div>
+</div>
+
+<!-- YouTube Channel Question -->
+<div class="field-group">
+    <label><i class="fab fa-youtube"></i> Do you have a YouTube Channel?</label>
+    <div class="options-wrapper">
+        <label class="option-item">
+            <input type="radio" name="youtubeChannel" value="Yes">
+            <span>Yes</span>
+        </label>
+
+        <label class="option-item">
+            <input type="radio" name="youtubeChannel" value="No">
+            <span>No</span>
+        </label>
+    </div>
+</div>
+
+<!-- Show only if Yes selected -->
+<div class="field-group" id="youtubeLinkField" style="display:none;">
+    <label><i class="fab fa-youtube"></i> YouTube Channel Link</label>
+    <input type="url" name="youtubeLink" placeholder="https://youtube.com/@yourchannel">
+</div>
+
+<script>
+document.querySelectorAll('input[name="youtubeChannel"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        document.getElementById('youtubeLinkField').style.display =
+            this.value === 'Yes' ? 'block' : 'none';
+    });
+});
+</script>
             <div class="field-group">
                 <label><i class="fas fa-pen-fancy"></i> Additional Notes</label>
                 <textarea id="additional_notes" rows="2"></textarea>
