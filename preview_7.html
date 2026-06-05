@@ -149,7 +149,6 @@
 
     <form id="astroRegisterForm">
         <div class="form-grid">
-            <!-- Basic Details (no placeholders) -->
             <div class="field-group">
                 <label><i class="fas fa-user-astronaut"></i> Full Name <span style="color:#c45d2c;">*</span></label>
                 <input type="text" id="fullname" required>
@@ -175,19 +174,16 @@
                 <input type="text" id="experience">
             </div>
             
-            <!-- Area of expertise (checkboxes) -->
             <div class="field-group">
                 <label><i class="fas fa-star-of-life"></i> Please share your area of expertise? <span style="color:#c45d2c;">* (Select all that apply)</span></label>
                 <div id="expertiseContainer" class="options-wrapper"></div>
             </div>
 
-            <!-- Languages -->
             <div class="field-group">
                 <label><i class="fas fa-language"></i> Languages You Can Consult In</label>
                 <div id="langContainer" class="options-wrapper"></div>
             </div>
 
-            <!-- Consultation Duration (15/30/60 mins) -->
             <div class="field-group">
                 <label><i class="fas fa-hourglass-half"></i> Consultation Duration Options (per session)</label>
                 <div class="radio-group-inline" id="durationGroup">
@@ -198,13 +194,11 @@
                 <div class="inline-hint"><i class="fas fa-info-circle"></i> Select your preferred session length</div>
             </div>
 
-            <!-- Consultation Charges -->
             <div class="field-group">
                 <label><i class="fas fa-rupee-sign"></i> Consultation Charges (₹) <span style="color:#c45d2c;">*</span></label>
                 <input type="text" id="charges" required>
             </div>
 
-            <!-- YouTube channel question -->
             <div class="field-group">
                 <label><i class="fab fa-youtube"></i> Do you have a YouTube channel?</label>
                 <div class="radio-group-inline" id="youtubeRadioGroup">
@@ -215,13 +209,11 @@
                 <div class="inline-hint"><i class="fab fa-youtube"></i> Share your astrology content or spiritual channel link to boost credibility</div>
             </div>
 
-            <!-- Preferred contact time -->
             <div class="field-group">
                 <label><i class="fas fa-clock"></i> Preferred Contact Time</label>
                 <div id="timeContainer" class="options-wrapper"></div>
             </div>
 
-            <!-- Additional Notes -->
             <div class="field-group">
                 <label><i class="fas fa-pen-fancy"></i> Additional Notes / Bio</label>
                 <textarea id="additional_notes" rows="2"></textarea>
@@ -237,14 +229,7 @@
 </div>
 
 <script>
-    // ========================
-    // 1. Dynamic Options Configuration
-    // ========================
-    
-    // Languages list
     const languagesList = ["Hindi","English","Odia","Bengali","Telugu","Tamil","Kannada","Malayalam","Marathi","Gujarati","Punjabi","Other"];
-    
-    // Area of expertise list
     const expertiseList = [
         "✓ Vedic Astrologers",
         "✓ Tarot Readers",
@@ -257,11 +242,8 @@
         "✓ Reiki & Healing Practitioners",
         "✓ YouTube Astrology Creators"
     ];
-    
-    // Preferred contact times
     const timeSlots = ["Morning","Afternoon","Evening","Anytime"];
     
-    // Helper: render checkboxes or radio groups
     function renderOptions(containerId, items, type, name) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -282,15 +264,12 @@
     renderOptions('langContainer', languagesList, 'checkbox', 'langs');
     renderOptions('timeContainer', timeSlots, 'radio', 'preferTime');
     
-    // Helper: get selected checkboxes values
     function getSelectedCheckboxValues(name) {
         const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
         return Array.from(checkboxes).map(cb => cb.value).join(', ');
     }
     
-    // ========================
-    // 2. Google Apps Script URL (replace with your own if needed)
-    // ========================
+    // Your existing script URL
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwvxM9anVOmRifOOMO6GiWyE7z0xV97K0CxfzIv66UcteMyn8X8rRkBnGEyyeXQvtum/exec";
     
     const form = document.getElementById('astroRegisterForm');
@@ -309,9 +288,7 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: new URLSearchParams(formDataObj).toString()
             });
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const result = await response.json();
             return { success: result.result === 'success', error: result.message };
         } catch (err) {
@@ -329,19 +306,16 @@
     }
     
     function fullFormReset() {
-        const formElement = document.getElementById('astroRegisterForm');
-        formElement.reset();
-        // Reset all dynamically generated checkboxes and radios
+        document.getElementById('astroRegisterForm').reset();
         document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => {
             if (el.name === 'hasYoutube' && el.value === 'No') el.checked = true;
             else if (el.type === 'checkbox') el.checked = false;
             else if (el.type === 'radio' && el.name !== 'hasYoutube' && el.name !== 'consultDuration') el.checked = false;
         });
         document.querySelectorAll('input[name="consultDuration"]').forEach(radio => radio.checked = false);
-        const youtubeLinkField = document.getElementById('youtubeLink');
-        if (youtubeLinkField) youtubeLinkField.value = '';
-        const noYoutubeRadio = document.querySelector('input[name="hasYoutube"][value="No"]');
-        if (noYoutubeRadio) noYoutubeRadio.checked = true;
+        document.getElementById('youtubeLink').value = '';
+        const noYoutube = document.querySelector('input[name="hasYoutube"][value="No"]');
+        if (noYoutube) noYoutube.checked = true;
         document.getElementById('additional_notes').value = '';
         document.getElementById('address').value = '';
     }
@@ -350,9 +324,8 @@
         e.preventDefault();
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting registration...';
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting...';
         
-        // Required field validation
         const fullname = document.getElementById('fullname').value.trim();
         const mobile = document.getElementById('mobile').value.trim();
         const email = document.getElementById('email').value.trim();
@@ -361,27 +334,21 @@
         if (!fullname) { showMessage('❌ Full Name is required.', true); resetButtonState(submitBtn); return; }
         if (!mobile) { showMessage('❌ Mobile Number is required.', true); resetButtonState(submitBtn); return; }
         if (!email) { showMessage('❌ Email ID is required.', true); resetButtonState(submitBtn); return; }
-        const emailPattern = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
-        if (!emailPattern.test(email)) { showMessage('❌ Valid email required.', true); resetButtonState(submitBtn); return; }
+        if (!/^[^\s@]+@([^\s@]+\.)+[^\s@]+$/.test(email)) { showMessage('❌ Valid email required.', true); resetButtonState(submitBtn); return; }
         if (!charges) { showMessage('❌ Consultation Charges are required.', true); resetButtonState(submitBtn); return; }
         
         const expertiseSelected = getSelectedCheckboxValues('expertise');
         const hasYoutubeRadio = document.querySelector('input[name="hasYoutube"]:checked');
         const hasYoutube = hasYoutubeRadio ? hasYoutubeRadio.value : 'No';
-        let youtubeChannelLink = document.getElementById('youtubeLink').value.trim();
-        if (hasYoutube === 'No') youtubeChannelLink = '';
+        let youtubeLink = document.getElementById('youtubeLink').value.trim();
+        if (hasYoutube === 'No') youtubeLink = '';
         
-        const consultDurationElem = document.querySelector('input[name="consultDuration"]:checked');
-        const consultDuration = consultDurationElem ? consultDurationElem.value : '';
-        
-        const preferredTimeElem = document.querySelector('input[name="preferTime"]:checked');
-        const preferredContactTime = preferredTimeElem ? preferredTimeElem.value : '';
+        const consultDuration = document.querySelector('input[name="consultDuration"]:checked')?.value || '';
+        const preferredContactTime = document.querySelector('input[name="preferTime"]:checked')?.value || '';
         
         const payload = {
             timestamp: new Date().toISOString(),
-            fullname: fullname,
-            mobile: mobile,
-            email: email,
+            fullname, mobile, email,
             address: document.getElementById('address').value,
             city: document.getElementById('city').value,
             state: document.getElementById('state').value,
@@ -391,39 +358,28 @@
             consultation_charges: charges,
             consultation_duration: consultDuration,
             has_youtube_channel: hasYoutube,
-            youtube_channel_url: youtubeChannelLink,
+            youtube_channel_url: youtubeLink,
             preferred_contact_time: preferredContactTime,
             additional_notes: document.getElementById('additional_notes').value
         };
         
         const result = await submitToSheet(payload);
-        
         if (result.success) {
-            showMessage('✨ Registration successful! Our team will connect with you shortly on WhatsApp/Email. Welcome to AstroNext.ai ✨');
+            showMessage('✨ Registration successful! Our team will connect soon. ✨');
             fullFormReset();
         } else {
-            showMessage('✅ Registration recorded! Our executive will verify & reach out. (If any delay, please contact support)', false);
-            fullFormReset();
+            showMessage('⚠️ ' + (result.error || 'Submission failed. Please try again.'), true);
         }
-        
         resetButtonState(submitBtn);
     });
     
-    // UX: YouTube radio toggles (no placeholder text, just focus)
-    const youtubeYesRadio = document.querySelector('input[name="hasYoutube"][value="Yes"]');
-    const youtubeNoRadio = document.querySelector('input[name="hasYoutube"][value="No"]');
-    const youtubeLinkInput = document.getElementById('youtubeLink');
-    if (youtubeYesRadio && youtubeNoRadio) {
-        youtubeYesRadio.addEventListener('change', function() {
-            if (this.checked) {
-                youtubeLinkInput.focus();
-            }
-        });
-        youtubeNoRadio.addEventListener('change', function() {
-            if (this.checked) {
-                youtubeLinkInput.value = '';
-            }
-        });
+    // YouTube radio helper
+    const yesRadio = document.querySelector('input[name="hasYoutube"][value="Yes"]');
+    const noRadio = document.querySelector('input[name="hasYoutube"][value="No"]');
+    const ytInput = document.getElementById('youtubeLink');
+    if (yesRadio && noRadio) {
+        yesRadio.addEventListener('change', () => ytInput.focus());
+        noRadio.addEventListener('change', () => ytInput.value = '');
     }
 </script>
 </body>
