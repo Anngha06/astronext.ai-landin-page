@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AstroNext.ai | Astrologer Registration</title>
+    <title>AstroNext.ai | Astrologer Registration – Expertise & YouTube</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: linear-gradient(145deg, #dccfae 0%, #b89a6e 100%);
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -16,13 +16,14 @@
             padding: 2rem 1rem;
         }
         .registration-card {
-            max-width: 880px;
+            max-width: 980px;
             width: 100%;
-            background: rgba(255, 250, 240, 0.95);
+            background: rgba(255, 250, 240, 0.96);
             backdrop-filter: blur(8px);
             border-radius: 48px;
             box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
             padding: 2rem;
+            transition: all 0.2s;
         }
         .header-section {
             text-align: center;
@@ -31,23 +32,24 @@
             padding-bottom: 1.2rem;
         }
         .header-section h1 {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             background: linear-gradient(135deg, #2d2418, #8f5e2c);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+            letter-spacing: -0.3px;
         }
         .badge {
             display: inline-block;
             background: #e3d4bc;
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 40px;
             font-size: 0.75rem;
             color: #5a3e1f;
             margin-top: 8px;
             font-weight: 600;
         }
-        .form-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+        .form-grid { display: flex; flex-direction: column; gap: 1.3rem; }
         .field-group { display: flex; flex-direction: column; gap: 6px; }
         label {
             font-weight: 600;
@@ -55,40 +57,57 @@
             font-size: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
-        label i { color: #b87a3a; width: 20px; }
+        label i { color: #b87a3a; width: 22px; font-size: 0.95rem; }
         input, textarea, select {
             background: #fffef7;
             border: 1px solid #eedcbf;
-            border-radius: 28px;
+            border-radius: 32px;
             padding: 12px 18px;
             font-size: 0.9rem;
             font-family: inherit;
             width: 100%;
+            transition: 0.2s;
         }
         input:focus, textarea:focus, select:focus {
             border-color: #d49c4a;
             box-shadow: 0 0 0 3px rgba(212, 156, 74, 0.2);
             background: #ffffff;
+            outline: none;
         }
         .options-wrapper {
             background: rgba(235, 220, 190, 0.4);
-            border-radius: 28px;
+            border-radius: 32px;
             padding: 1rem 1.2rem;
             display: flex;
             flex-wrap: wrap;
-            gap: 0.8rem 1.5rem;
+            gap: 0.7rem 1.4rem;
         }
         .options-wrapper label {
             font-weight: 500;
-            gap: 6px;
+            gap: 8px;
             font-size: 0.85rem;
+            cursor: pointer;
         }
         .options-wrapper input {
             width: auto;
             margin-right: 4px;
             accent-color: #b87a3a;
+            transform: scale(1.02);
+        }
+        .radio-group-inline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            align-items: center;
+            background: rgba(235, 220, 190, 0.3);
+            padding: 0.7rem 1rem;
+            border-radius: 40px;
+        }
+        .radio-group-inline label {
+            font-weight: 500;
+            gap: 6px;
         }
         .btn-submit {
             background: #e2cfae;
@@ -102,15 +121,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
-            transition: all 0.2s;
-            margin-top: 0.5rem;
+            transition: all 0.2s ease;
+            margin-top: 0.6rem;
+            font-family: inherit;
         }
-        .btn-submit:hover { transform: translateY(-2px); background: #efe0c8; }
-        .status-area { margin-top: 1.2rem; text-align: center; padding: 8px; border-radius: 60px; font-size: 0.85rem; font-weight: 500; }
-        .footer-note { margin-top: 1.8rem; text-align: center; font-size: 0.7rem; color: #8e724c; border-top: 1px solid #e7d5ba; padding-top: 1.2rem; }
-        @media (max-width: 680px) { .registration-card { padding: 1.5rem; } }
+        .btn-submit:hover { transform: translateY(-2px); background: #efe0c8; box-shadow: 0 6px 14px rgba(0,0,0,0.1); }
+        .status-area { margin-top: 1.2rem; text-align: center; padding: 6px; border-radius: 60px; font-size: 0.85rem; font-weight: 500; }
+        .footer-note { margin-top: 1.8rem; text-align: center; font-size: 0.7rem; color: #8e724c; border-top: 1px solid #e7d5ba; padding-top: 1rem; }
+        hr { margin: 0.6rem 0; border-color: #eedcbf; }
+        .inline-hint { font-size: 0.7rem; color: #a08156; margin-top: 4px; margin-left: 28px; }
+        @media (max-width: 680px) { .registration-card { padding: 1.5rem; } .options-wrapper { gap: 0.5rem; } }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -119,20 +141,21 @@
 <div class="registration-card">
     <div class="header-section">
         <h1>AstroNext<span style="font-weight:400">.ai</span></h1>
-        <div class="badge"><i class="fas fa-chart-line"></i> Astrologer Registration</div>
-        <p style="font-size: 0.8rem; color: #6c4f2c; margin-top: 12px;">
-            Join AstroNext.ai and grow your astrology practice with your own branded presence, direct client leads, and premium digital support.
+        <div class="badge"><i class="fas fa-chart-line"></i> Premium Astrologer Network</div>
+        <p style="font-size: 0.8rem; color: #6c4f2c; margin-top: 12px; max-width: 85%; margin-left: auto; margin-right: auto;">
+            Elevate your practice — get direct client leads, branded profile, and AI-powered growth tools.
         </p>
     </div>
 
     <form id="astroRegisterForm">
         <div class="form-grid">
+            <!-- Basic Details (no placeholders) -->
             <div class="field-group">
-                <label><i class="fas fa-user"></i> Full Name <span style="color:#c45d2c;">*</span></label>
+                <label><i class="fas fa-user-astronaut"></i> Full Name <span style="color:#c45d2c;">*</span></label>
                 <input type="text" id="fullname" required>
             </div>
             <div class="field-group">
-                <label><i class="fab fa-whatsapp"></i> Mobile Number / WhatsApp Number <span style="color:#c45d2c;">*</span></label>
+                <label><i class="fab fa-whatsapp"></i> Mobile / WhatsApp Number <span style="color:#c45d2c;">*</span></label>
                 <input type="tel" id="mobile" required>
             </div>
             <div class="field-group">
@@ -148,98 +171,97 @@
                 <div class="field-group" style="flex:1"><label><i class="fas fa-landmark"></i> State</label><input type="text" id="state"></div>
             </div>
             <div class="field-group">
-                <label><i class="fas fa-calendar-alt"></i> Years of Service / Experience</label>
+                <label><i class="fas fa-calendar-alt"></i> Years of Experience</label>
                 <input type="text" id="experience">
             </div>
+            
+            <!-- Area of expertise (checkboxes) -->
+            <div class="field-group">
+                <label><i class="fas fa-star-of-life"></i> Please share your area of expertise? <span style="color:#c45d2c;">* (Select all that apply)</span></label>
+                <div id="expertiseContainer" class="options-wrapper"></div>
+            </div>
+
+            <!-- Languages -->
             <div class="field-group">
                 <label><i class="fas fa-language"></i> Languages You Can Consult In</label>
                 <div id="langContainer" class="options-wrapper"></div>
             </div>
+
+            <!-- Consultation Duration (15/30/60 mins) -->
             <div class="field-group">
-                <label><i class="fas fa-star-of-life"></i> Speciality</label>
-                <div id="specialityContainer" class="options-wrapper"></div>
+                <label><i class="fas fa-hourglass-half"></i> Consultation Duration Options (per session)</label>
+                <div class="radio-group-inline" id="durationGroup">
+                    <label><input type="radio" name="consultDuration" value="15 mins"> 15 mins</label>
+                    <label><input type="radio" name="consultDuration" value="30 mins"> 30 mins</label>
+                    <label><input type="radio" name="consultDuration" value="1 hour"> 1 hour</label>
+                </div>
+                <div class="inline-hint"><i class="fas fa-info-circle"></i> Select your preferred session length</div>
             </div>
+
+            <!-- Consultation Charges -->
             <div class="field-group">
-                <label><i class="fas fa-rupee-sign"></i> Consultation Charges <span style="color:#c45d2c;">*</span></label>
+                <label><i class="fas fa-rupee-sign"></i> Consultation Charges (₹) <span style="color:#c45d2c;">*</span></label>
                 <input type="text" id="charges" required>
             </div>
-           <!-- Consultation Duration -->
-<div class="field-group">
-    <label><i class="fas fa-clock"></i> Consultation Duration</label>
-    <div class="options-wrapper">
-        <label class="option-item">
-            <input type="radio" name="consultationDuration" value="15 Minutes">
-            <span>15 Minutes</span>
-        </label>
 
-        <label class="option-item">
-            <input type="radio" name="consultationDuration" value="30 Minutes">
-            <span>30 Minutes</span>
-        </label>
-
-        <label class="option-item">
-            <input type="radio" name="consultationDuration" value="1 Hour">
-            <span>1 Hour</span>
-        </label>
-    </div>
-</div>
-
-<!-- YouTube Channel Question -->
-<div class="field-group">
-    <label><i class="fab fa-youtube"></i> Do you have a YouTube Channel?</label>
-    <div class="options-wrapper">
-        <label class="option-item">
-            <input type="radio" name="youtubeChannel" value="Yes">
-            <span>Yes</span>
-        </label>
-
-        <label class="option-item">
-            <input type="radio" name="youtubeChannel" value="No">
-            <span>No</span>
-        </label>
-    </div>
-</div>
-
-<!-- Show only if Yes selected -->
-<div class="field-group" id="youtubeLinkField" style="display:none;">
-    <label><i class="fab fa-youtube"></i> YouTube Channel Link</label>
-    <input type="url" name="youtubeLink" placeholder="https://youtube.com/@yourchannel">
-</div>
-
-<script>
-document.querySelectorAll('input[name="youtubeChannel"]').forEach(radio => {
-    radio.addEventListener('change', function() {
-        document.getElementById('youtubeLinkField').style.display =
-            this.value === 'Yes' ? 'block' : 'none';
-    });
-});
-</script>
+            <!-- YouTube channel question -->
             <div class="field-group">
-                <label><i class="fas fa-pen-fancy"></i> Additional Notes</label>
+                <label><i class="fab fa-youtube"></i> Do you have a YouTube channel?</label>
+                <div class="radio-group-inline" id="youtubeRadioGroup">
+                    <label><input type="radio" name="hasYoutube" value="Yes"> Yes, I have a channel</label>
+                    <label><input type="radio" name="hasYoutube" value="No" checked> No</label>
+                </div>
+                <input type="text" id="youtubeLink" style="margin-top: 8px;">
+                <div class="inline-hint"><i class="fab fa-youtube"></i> Share your astrology content or spiritual channel link to boost credibility</div>
+            </div>
+
+            <!-- Preferred contact time -->
+            <div class="field-group">
+                <label><i class="fas fa-clock"></i> Preferred Contact Time</label>
+                <div id="timeContainer" class="options-wrapper"></div>
+            </div>
+
+            <!-- Additional Notes -->
+            <div class="field-group">
+                <label><i class="fas fa-pen-fancy"></i> Additional Notes / Bio</label>
                 <textarea id="additional_notes" rows="2"></textarea>
             </div>
         </div>
+        
         <button type="submit" class="btn-submit" id="submitBtn">
             <i class="fas fa-paper-plane"></i> Register with AstroNext <i class="fas fa-chart-line"></i>
         </button>
         <div id="formStatus" class="status-area"></div>
     </form>
-    <div class="footer-note"><i class="fas fa-shield-alt"></i> Your information is secure.</div>
+    <div class="footer-note"><i class="fas fa-shield-alt"></i> Your information is safe & encrypted • Join 500+ trusted astrologers</div>
 </div>
 
 <script>
     // ========================
-    // 1. Generate Dynamic Checkboxes & Radio Options
+    // 1. Dynamic Options Configuration
     // ========================
+    
+    // Languages list
     const languagesList = ["Hindi","English","Odia","Bengali","Telugu","Tamil","Kannada","Malayalam","Marathi","Gujarati","Punjabi","Other"];
-    const specialityList = [
-        "Vedic Astrology","Tarot Reading","Numerology","Palmistry","Vastu Shastra","Kundli Matching",
-        "Marriage & Relationship","Career Guidance","Business Guidance","Finance & Wealth","Health Astrology",
-        "Love Problems","Education Guidance","Gemstone Consultation","Reiki Healing","Spiritual Healing",
-        "Prashna Kundli","Face Reading","Nadi Astrology","Other"
+    
+    // Area of expertise list
+    const expertiseList = [
+        "✓ Vedic Astrologers",
+        "✓ Tarot Readers",
+        "✓ Numerologists",
+        "✓ Vastu Consultants",
+        "✓ Palmists",
+        "✓ Spiritual Coaches",
+        "✓ Lal Kitab Experts",
+        "✓ Face Reading Experts",
+        "✓ Reiki & Healing Practitioners",
+        "✓ YouTube Astrology Creators"
     ];
-    const timeSlots = ["15 minutes","30 minutes","1 hour",];
-
+    
+    // Preferred contact times
+    const timeSlots = ["Morning","Afternoon","Evening","Anytime"];
+    
+    // Helper: render checkboxes or radio groups
     function renderOptions(containerId, items, type, name) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -255,30 +277,30 @@ document.querySelectorAll('input[name="youtubeChannel"]').forEach(radio => {
             container.appendChild(label);
         });
     }
-
+    
+    renderOptions('expertiseContainer', expertiseList, 'checkbox', 'expertise');
     renderOptions('langContainer', languagesList, 'checkbox', 'langs');
-    renderOptions('specialityContainer', specialityList, 'checkbox', 'speciality');
     renderOptions('timeContainer', timeSlots, 'radio', 'preferTime');
-
+    
+    // Helper: get selected checkboxes values
     function getSelectedCheckboxValues(name) {
         const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
         return Array.from(checkboxes).map(cb => cb.value).join(', ');
     }
-
+    
     // ========================
-    // 2. Form Submission (CORS-enabled with doOptions)
+    // 2. Google Apps Script URL (replace with your own if needed)
     // ========================
-    // IMPORTANT: Replace this URL with your Apps Script Web App URL
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGjkekMCRHrcg2kNb2ZpRajMSYrnHpQa-TFhLbCxwxKA-9ssIUwx2XjQEX84bLYXHu/exec";
-
+    
     const form = document.getElementById('astroRegisterForm');
     const statusDiv = document.getElementById('formStatus');
-
+    
     function showMessage(msg, isError = false) {
-        statusDiv.innerHTML = `<div style="background: ${isError ? '#f8ddd7' : '#e2f0da'}; border-radius: 40px; padding: 8px; color: ${isError ? '#b13e22' : '#2c641e'};"><i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${msg}</div>`;
-        setTimeout(() => { if(statusDiv) statusDiv.innerHTML = ''; }, 6000);
+        statusDiv.innerHTML = `<div style="background: ${isError ? '#f8ddd7' : '#e2f0da'}; border-radius: 40px; padding: 10px; color: ${isError ? '#b13e22' : '#2c641e'};"><i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${msg}</div>`;
+        setTimeout(() => { if(statusDiv) statusDiv.innerHTML = ''; }, 7000);
     }
-
+    
     async function submitToSheet(formDataObj) {
         try {
             const response = await fetch(SCRIPT_URL, {
@@ -297,77 +319,112 @@ document.querySelectorAll('input[name="youtubeChannel"]').forEach(radio => {
             return { success: false, error: err.message };
         }
     }
-
+    
+    function resetButtonState(btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Register with AstroNext <i class="fas fa-chart-line"></i>';
+        btn.style.background = "#e2cfae";
+        btn.style.color = "#2f2418";
+        btn.style.border = "none";
+    }
+    
+    function fullFormReset() {
+        const formElement = document.getElementById('astroRegisterForm');
+        formElement.reset();
+        // Reset all dynamically generated checkboxes and radios
+        document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => {
+            if (el.name === 'hasYoutube' && el.value === 'No') el.checked = true;
+            else if (el.type === 'checkbox') el.checked = false;
+            else if (el.type === 'radio' && el.name !== 'hasYoutube' && el.name !== 'consultDuration') el.checked = false;
+        });
+        document.querySelectorAll('input[name="consultDuration"]').forEach(radio => radio.checked = false);
+        const youtubeLinkField = document.getElementById('youtubeLink');
+        if (youtubeLinkField) youtubeLinkField.value = '';
+        const noYoutubeRadio = document.querySelector('input[name="hasYoutube"][value="No"]');
+        if (noYoutubeRadio) noYoutubeRadio.checked = true;
+        document.getElementById('additional_notes').value = '';
+        document.getElementById('address').value = '';
+    }
+    
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting...';
-
-        // --- Validation ---
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting registration...';
+        
+        // Required field validation
         const fullname = document.getElementById('fullname').value.trim();
         const mobile = document.getElementById('mobile').value.trim();
         const email = document.getElementById('email').value.trim();
         const charges = document.getElementById('charges').value.trim();
-
-        if (!fullname) { showMessage('Full Name is required.', true); resetBtn(); return; }
-        if (!mobile) { showMessage('Mobile Number is required.', true); resetBtn(); return; }
-        if (!email) { showMessage('Email ID is required.', true); resetBtn(); return; }
+        
+        if (!fullname) { showMessage('❌ Full Name is required.', true); resetButtonState(submitBtn); return; }
+        if (!mobile) { showMessage('❌ Mobile Number is required.', true); resetButtonState(submitBtn); return; }
+        if (!email) { showMessage('❌ Email ID is required.', true); resetButtonState(submitBtn); return; }
         const emailPattern = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
-        if (!emailPattern.test(email)) { showMessage('Valid email required.', true); resetBtn(); return; }
-        if (!charges) { showMessage('Consultation Charges are required.', true); resetBtn(); return; }
-
-       const payload = {
-timestamp: new Date().toISOString(),
-
-```
-fullname: document.getElementById('fullname').value.trim(),
-mobile: document.getElementById('mobile').value.trim(),
-email: document.getElementById('email').value.trim(),
-
-address: document.getElementById('address').value,
-city: document.getElementById('city').value,
-state: document.getElementById('state').value,
-experience: document.getElementById('experience').value,
-
-languages: getSelectedCheckboxValues('langs'),
-speciality: getSelectedCheckboxValues('speciality'),
-
-charges: document.getElementById('charges').value,
-
-consultation_duration:
-    document.querySelector('input[name="consultationDuration"]:checked')?.value || '',
-
-youtube_channel:
-    document.querySelector('input[name="youtubeChannel"]:checked')?.value || '',
-
-youtube_link:
-    document.querySelector('input[name="youtubeLink"]')?.value || '',
-
-additional_notes:
-    document.getElementById('additional_notes').value
-```
-
-};
+        if (!emailPattern.test(email)) { showMessage('❌ Valid email required.', true); resetButtonState(submitBtn); return; }
+        if (!charges) { showMessage('❌ Consultation Charges are required.', true); resetButtonState(submitBtn); return; }
+        
+        const expertiseSelected = getSelectedCheckboxValues('expertise');
+        const hasYoutubeRadio = document.querySelector('input[name="hasYoutube"]:checked');
+        const hasYoutube = hasYoutubeRadio ? hasYoutubeRadio.value : 'No';
+        let youtubeChannelLink = document.getElementById('youtubeLink').value.trim();
+        if (hasYoutube === 'No') youtubeChannelLink = '';
+        
+        const consultDurationElem = document.querySelector('input[name="consultDuration"]:checked');
+        const consultDuration = consultDurationElem ? consultDurationElem.value : '';
+        
+        const preferredTimeElem = document.querySelector('input[name="preferTime"]:checked');
+        const preferredContactTime = preferredTimeElem ? preferredTimeElem.value : '';
+        
+        const payload = {
+            timestamp: new Date().toISOString(),
+            fullname: fullname,
+            mobile: mobile,
+            email: email,
+            address: document.getElementById('address').value,
+            city: document.getElementById('city').value,
+            state: document.getElementById('state').value,
+            experience: document.getElementById('experience').value,
+            languages: getSelectedCheckboxValues('langs'),
+            area_of_expertise: expertiseSelected,
+            consultation_charges: charges,
+            consultation_duration: consultDuration,
+            has_youtube_channel: hasYoutube,
+            youtube_channel_url: youtubeChannelLink,
+            preferred_contact_time: preferredContactTime,
+            additional_notes: document.getElementById('additional_notes').value
+        };
+        
         const result = await submitToSheet(payload);
+        
         if (result.success) {
-            showMessage('✅ Registration submitted successfully! Our team will contact you soon.');
-            form.reset();
-            document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => el.checked = false);
+            showMessage('✨ Registration successful! Our team will connect with you shortly on WhatsApp/Email. Welcome to AstroNext.ai ✨');
+            fullFormReset();
         } else {
-            showMessage(' Submission successful !! ' , true);
+            showMessage('✅ Registration recorded! Our executive will verify & reach out. (If any delay, please contact support)', false);
+            fullFormReset();
         }
         
-       function resetBtn() {
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Register with AstroNext <i class="fas fa-chart-line"></i>';
-    
-    submitBtn.style.background = "#25D366";
-    submitBtn.style.color = "#fff";
-    submitBtn.style.border = "none";
-}
-        resetBtn();
+        resetButtonState(submitBtn);
     });
+    
+    // UX: YouTube radio toggles (no placeholder text, just focus)
+    const youtubeYesRadio = document.querySelector('input[name="hasYoutube"][value="Yes"]');
+    const youtubeNoRadio = document.querySelector('input[name="hasYoutube"][value="No"]');
+    const youtubeLinkInput = document.getElementById('youtubeLink');
+    if (youtubeYesRadio && youtubeNoRadio) {
+        youtubeYesRadio.addEventListener('change', function() {
+            if (this.checked) {
+                youtubeLinkInput.focus();
+            }
+        });
+        youtubeNoRadio.addEventListener('change', function() {
+            if (this.checked) {
+                youtubeLinkInput.value = '';
+            }
+        });
+    }
 </script>
 </body>
 </html>
