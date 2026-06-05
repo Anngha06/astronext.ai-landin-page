@@ -238,7 +238,7 @@ document.querySelectorAll('input[name="youtubeChannel"]').forEach(radio => {
         "Love Problems","Education Guidance","Gemstone Consultation","Reiki Healing","Spiritual Healing",
         "Prashna Kundli","Face Reading","Nadi Astrology","Other"
     ];
-    const timeSlots = ["Morning","Afternoon","Evening","Anytime"];
+    const timeSlots = ["15 minutes","30 minutes","1 hour",];
 
     function renderOptions(containerId, items, type, name) {
         const container = document.getElementById(containerId);
@@ -318,19 +318,35 @@ document.querySelectorAll('input[name="youtubeChannel"]').forEach(radio => {
         if (!charges) { showMessage('Consultation Charges are required.', true); resetBtn(); return; }
 
         const payload = {
-            timestamp: new Date().toISOString(),
-            fullname, mobile, email,
-            address: document.getElementById('address').value,
-            city: document.getElementById('city').value,
-            state: document.getElementById('state').value,
-            experience: document.getElementById('experience').value,
-            languages: getSelectedCheckboxValues('langs'),
-            speciality: getSelectedCheckboxValues('speciality'),
-            charges: charges,
-            preferred_contact_time: document.querySelector('input[name="preferTime"]:checked')?.value || '',
-            additional_notes: document.getElementById('additional_notes').value
-        };
+timestamp: new Date().toISOString(),
+fullname: document.getElementById('fullname').value.trim(),
+mobile: document.getElementById('mobile').value.trim(),
+email: document.getElementById('email').value.trim(),
 
+address: document.getElementById('address').value,
+city: document.getElementById('city').value,
+state: document.getElementById('state').value,
+experience: document.getElementById('experience').value,
+
+languages: getSelectedCheckboxValues('langs'),
+speciality: getSelectedCheckboxValues('speciality'),
+
+charges: document.getElementById('charges').value,
+
+consultation_duration:
+    document.querySelector('input[name="consultationDuration"]:checked')?.value || '',
+
+youtube_channel:
+    document.querySelector('input[name="youtubeChannel"]:checked')?.value || '',
+
+youtube_link:
+    document.querySelector('input[name="youtubeLink"]')?.value || '',
+
+additional_notes:
+    document.getElementById('additional_notes').value
+```
+
+};
         const result = await submitToSheet(payload);
         if (result.success) {
             showMessage('✅ Registration submitted successfully! Our team will contact you soon.');
